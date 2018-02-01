@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br/>
+<h1> The homepage of the internet </h1>
+<a class = "btn btn-primary" href="{% url 'posts:create' %}"> New Post </a>
+
+<br/>
+<br/>
+
+{% for post in posts.all %}
+{% if post.image.url != NONE %}
+<img src="{{ post.image.url }}" alt="postpicture">
+{% else %}
+<p> There's no image here! </p>
+{% endif %}
+<form method="POST" action="{% url 'posts:upvote'  post.id %}">
+        {% csrf_token %}
+        <input type="submit" value="UP"/>    
+        </form>{{ post.votes_total }} <form method="POST" action="{% url 'posts:downvote'  post.id %}">
+        {% csrf_token %}
+        <input type="submit" value="DOWN"/> </form> - <a href="{% url 'posts:blog' post.id%}">{{ post.title }}</a>
+<br/>
+{{ post.pub_date }} by <a href="{% url 'posts:userposts' post.author.id %}">{{ post.author.username }}</a> <!-- so the post.author.id is the input for the webpage, thats how it relays the id # -->
+<br/>
+
+
+{% endfor %}
+
+{% endblock %}
+

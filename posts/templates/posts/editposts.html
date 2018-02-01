@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br/>
+<h1>Edit Post</h1>
+{% if error %}
+{{ error }}
+<br/>
+<br/>
+{% endif %}
+
+<form method="POST" action="{% url 'posts:editposts' posts.id%}" enctype= "multipart/form-data">
+    {% csrf_token %}
+
+  Title:
+</br>
+    <input type="text" name="title"/>
+</br>
+    Body:
+</br>
+    <input type="text" name="url"/>    
+<br/>
+<br/>
+
+    File:  
+</br>  
+    <input type="file" name="image">
+<br/>
+
+    Resume: 
+</br>  
+    <input type="file" name="resume">
+
+
+
+z
+</br><br/>
+    <input class = "btn btn-primary" type="submit" name="Confirm Changes"/>    
+    <br/>
+</form>
+
+{% endblock %}

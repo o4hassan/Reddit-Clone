@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<form method="POST" action="{% url 'accounts:edit' user.id%}">
+    {% csrf_token %}
+    Bio:
+</br>
+    <input type="text" name="bio"/>
+
+</br>
+Firstname:
+</br>
+    <input type="text" name="firstname"/>
+
+</br>
+Username:
+</br>
+    <input type="text" name="username"/>
+
+</br>
+Email:
+</br>
+    <input type="text" name="email"/>
+
+</br>
+    <input class = "btn btn-primary" type="submit" name="Confirm Changes"/>    
+</form>
+
+
+
+{% endblock %}

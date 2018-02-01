@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br/>
+<h1> Welcome to {{ author.username }}'s profile! </h1>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<h3> Here are {{ author.username }}'s posts </h3>
+
+<br/>
+<br/>
+
+{% for post in posts.all %}
+
+<form method="POST" action="{% url 'posts:upvote'  post.id %}">
+        {% csrf_token %}
+        <input type="submit" value="UP"/>    
+    </form>{{ post.votes_total }} <form method="POST" action="{% url 'posts:downvote'  post.id %}">
+            {% csrf_token %}
+    <input type="submit" value="DOWN"/> </form> - <a href="{% url 'posts:blog' post.id%}">{{ post.title }}</a>
+<br/>
+{{ post.pub_date }} by <a href="{% url 'posts:userposts' post.author.id %}">{{ post.author.username }}</a>
+<br/>
+
+
+{% endfor %}
+
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br/>
+<h1>New Post</h1>
+{% if error %}
+{{ error }}
+<br/>
+<br/>
+{% endif %}
+
+<form method="POST" action="{% url 'posts:create' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+
+  Title:
+</br>
+    <input type="text" name="title"/>
+</br>
+    Body:
+</br>
+    <input type="text" name="body"/>    
+</br>
+<br/>
+
+    File:  
+</br>  
+    <input type="file" name="image">
+<br/>
+
+    Resume: 
+</br>  
+    <input type="file" name="resume">
+
+
+
+
+</br><br/>
+    <input class = "btn btn-primary" type="submit" name="Post"/>    
+    <br/>
+</form>
+
+{% endblock %}
